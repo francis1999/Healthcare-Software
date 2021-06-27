@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { Posts } = require("../models");
 const Products = require("../models/Products");
 //app.use(express.json());
 
