@@ -10,9 +10,12 @@ app.use(cors());
 const ProductRoute = require("./routes/Products");
 const postRouter = require("./routes/Posts");
 const RegistrationtblRouter = require("./routes/Registrations");
+const LoginRouter = require("./routes/Login");
 app.use("/posts", postRouter);
 app.use("/Products", ProductRoute);
 app.use("/Registrations", RegistrationtblRouter);
+app.use("/Login", LoginRouter);
+
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
