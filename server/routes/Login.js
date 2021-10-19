@@ -3,19 +3,25 @@ const db = require("../models");
 const router = express.Router();
 const { Registrations } = require("../models");
 const bcrypt = require("bcrypt");
-const validateToken = require('../middleware/AuthMiddleware');
+//onst validateToken = require('../middleware/AuthMiddleware');
+const { sign } = require("jsonwebtoken");
 
 //app.use(express.json());
 
 
-router.post("/", /* validateToken, */ async(req, res) => {
-    const { Username, Password } = req.body;
-    const user = await Registrations.findOne({ where: { Username: Username } });
+router.post("/", /* validateToken, */ async (req, res) => {
+    const { username, password } = req.body;
+    const user = await Registrations.findOne({ where: { username: username } });
     if (!user) res.json({ error: "Username Does Not Exist" });
-    bcrypt.compare(Password, user.Password).then((match) => {
-        if (!match) res.json({ error: "Wrong Username and Password" });
-        res.json("You have Successfull Loged in");
+    bcrypt.compare(password, user.password).then(async (match) => {
+        if (!match) res.json({ error: "Wrong Username or Password" });
+        const accessToken = sign({ username: user.username, id: user.id },
+            "importantsecret")
+        res.json(accessToken);
+        /*  res.json("You have Successfull Logged in"); */
+
     });
+
 });
 
 

@@ -3,25 +3,25 @@ const { sequelize } = require("."); */
 
 module.exports = (sequelize, DataTypes) => {
     const Registrations = sequelize.define("Registrations", {
-        Surname: {
+        surname: {
             type: DataTypes.STRING,
         },
-        Othernames: {
+        othernames: {
             type: DataTypes.STRING,
         },
-        Username: {
+        username: {
             type: DataTypes.STRING,
         },
-        Email: {
+        email: {
             type: DataTypes.STRING,
         },
-        PhoneNumber: {
+        phoneNumber: {
             type: DataTypes.STRING,
         },
-        Password: {
+        password: {
             type: DataTypes.STRING,
         },
-        PasswordConfirmation: {
+        passwordConfirmation: {
             type: DataTypes.STRING
         }
     });

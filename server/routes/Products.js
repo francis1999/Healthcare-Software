@@ -4,7 +4,7 @@ const Products = require("../models/Products");
 //app.use(express.json());
 
 
-router.post("/", async(req, res) => {
+router.post("/", async (req, res) => {
     const Product = req.body;
     await Products.create(Product);
     res.json(Product);
